@@ -1,0 +1,26 @@
+# CMake build directories
+build/
+*/build/
+
+# CMake generated files
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+CMakeFiles/
+
+# Build output folders
+bin/
+*/bin/
+
+# Compiled objects and libraries
+*.o
+*.obj
+*.a
+*.so
+*.dylib
+*.dll
+
+# Executables
+*.exe
+hello
+functional
