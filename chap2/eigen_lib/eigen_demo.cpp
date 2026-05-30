@@ -18,14 +18,29 @@ int main(int, char**){
     B(1, 1) = 2.;
     B(1, 2) = 1.;
 
+    //Matrix multiplication
     auto C = A * B;
 
     std::cout << "A:" << std::endl << A << std::endl;
     std::cout << "B:" << std::endl << B << std::endl;
-    std::cout << "C:" << std::endl << C << std::endl << std::endl;
+    std::cout << "C:" << std::endl << C << std::endl << std::endl << std::endl;
 
+    //Coefficient-wise multiplication
     auto D = B.cwiseProduct(C);
     std::cout << "Coefficient-wise multiplication of B & C is:" << std::endl << D << std::endl;
+
+    std::cout << "The inverse of A is:" << std::endl << A.inverse() << std::endl;
+    std::cout << "The determinant of A is:" << std::endl << A.determinant() << std::endl;
+    std::cout << "The transpose of B is:" << std::endl << B.transpose() << std::endl << std::endl;
+
+    //Example of unary operation
+    std::cout << "Example of unary operation: the square of each coefficient of A is:" << std::endl;
+    auto funcXX = [](double x){return x*x;};
+    std::cout << A.unaryExpr(funcXX) << std::endl << std::endl;
+    
+    std::cout << "Example of binary operation: the product of each coefficient of B with the corresponding coefficient of C is:" << std::endl;
+    auto funcXY = [](double x, double y){return x*y;};
+    std::cout << B.binaryExpr(C, funcXY) << std::endl;
 
     return 0;
 }
