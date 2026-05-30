@@ -27,4 +27,5 @@ functional
 
 # IDE and editor files
 *.vscode/
-*.DS_Store
+.DS_Store
+**/.DS_Store
