@@ -26,5 +26,5 @@ hello
 functional
 
 # IDE and editor files
-.vscode/
-.DS_Store
+*.vscode/
+*.DS_Store
