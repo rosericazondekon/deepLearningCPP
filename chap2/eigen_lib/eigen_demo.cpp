@@ -3,6 +3,9 @@
 
 using Matrix = Eigen::MatrixXd;
 
+Matrix flipHorizontal(const Matrix& m);
+Matrix flipVertical(const Matrix& m);
+
 int main(int, char**){
     Matrix A(2, 2);
     A(0, 0) = 2.;
@@ -23,7 +26,7 @@ int main(int, char**){
 
     std::cout << "A:" << std::endl << A << std::endl;
     std::cout << "B:" << std::endl << B << std::endl;
-    std::cout << "C:" << std::endl << C << std::endl << std::endl << std::endl;
+    std::cout << "C:" << std::endl << C << std::endl << std::endl;
 
     //Coefficient-wise multiplication
     auto D = B.cwiseProduct(C);
@@ -42,5 +45,43 @@ int main(int, char**){
     auto funcXY = [](double x, double y){return x*y;};
     std::cout << B.binaryExpr(C, funcXY) << std::endl;
 
+    //Examples of flipping matrices
+    std::cout << "Horizontal flip of A:" <<
+                std::endl << flipHorizontal(A) << std::endl << std::endl;
+    std::cout << "Vertical flip of A:" <<
+                std::endl << flipVertical(A) << std::endl << std::endl;
+    std::cout << "Matrix B:" <<
+                std::endl << B << std::endl << std::endl;
+    std::cout << "Horizontal flip of B:" <<
+                std::endl << flipHorizontal(B) << std::endl << std::endl;
+    std::cout << "Vertical flip of B:" <<
+                std::endl << flipVertical(B) << std::endl << std::endl;
+    std::cout << "Rotate B by 90 degrees clock-wise:" <<
+                std::endl << flipVertical(B.transpose()) << std::endl << std::endl;
+    std::cout << "Rotate B by 90 degrees counter clock-wise:" <<
+                std::endl << flipHorizontal(B.transpose()) << std::endl << std::endl;
+
     return 0;
+}
+
+Matrix flipVertical(const Matrix& m){
+    Matrix J = Matrix::Zero(m.cols(), m.cols());
+    for(Eigen::Index i = 0; i < m.cols(); i++){
+        for(Eigen::Index j = 0; j < m.cols(); j++){
+            J(i, j) = ((i + j) == (m.cols() - 1)) ? 1. : 0.;
+        }
+    }
+    J = m * J;
+    return J;
+}
+
+Matrix flipHorizontal(const Matrix& m){
+    Matrix J = Matrix::Zero(m.rows(), m.rows());
+    for(Eigen::Index i = 0; i < m.rows(); i++){
+        for(Eigen::Index j = 0; j < m.rows(); j++){
+            J(i, j) = ((i + j) == (m.rows() - 1)) ? 1. : 0.;
+        }
+    }
+    J = J * m;
+    return J;
 }
