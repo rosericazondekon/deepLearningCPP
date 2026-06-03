@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "myfunctions.hpp"
+#include "src/myfunctions.hpp"
 
 int main(int, char**) {
     std::cout << "Sigmoid of -100 is: " << sigmoid(-100.f) << std::endl;

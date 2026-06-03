@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.8)
 
-set(PROJECT_NAME unit_test)
+set(PROJECT_NAME sigmoid)
 project(${PROJECT_NAME} CXX)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -34,7 +34,7 @@ if(BUILD_TESTS)
     gtest_discover_tests(${PROJECT_TEST_NAME})
 endif()
 
-file(GLOB_RECURSE SRC_FILES "${PROJECT_SOURCE_DIR}/src/*.cpp")
+file(GLOB SRC_FILES "${PROJECT_SOURCE_DIR}/src/*.cpp" "${PROJECT_SOURCE_DIR}/*.cpp")
 add_executable(${PROJECT_NAME} ${SRC_FILES})
 target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic)
 
