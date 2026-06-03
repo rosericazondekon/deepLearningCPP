@@ -6,6 +6,8 @@
 #include <boost/math/distributions/chi_squared.hpp>
 #include <boost/math/distributions/students_t.hpp>
 
+using namespace boost::math;
+
 std::vector<float> glorot_initializer(size_t fan_in, size_t fan_out){
     size_t size = fan_in * fan_out;
     float std_dev = sqrt(2. / (fan_in + fan_out));
@@ -25,7 +27,7 @@ std::vector<float> glorot_initializer(size_t fan_in, size_t fan_out){
     return weights;
 }
 
-using namespace boost::math;
+
 
 bool chi_squared_test(float population_std, float sample_std, size_t sample_size, float confidence){
     float variance_rate = sample_std / population_std;
